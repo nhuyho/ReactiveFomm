@@ -1,0 +1,23 @@
+.information-form {
+  border: 1px solid #aebfbe;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.information-form form .label-title {
+  font-size: 20px;
+  color: #000063;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+.information-form form .btn-submit {
+  width: 7rem;
+  height: 40px;
+  margin: 30px auto;
+  margin-top: auto;
+  background: #d32f2f;
+  color: #fff;
+  line-height: 20px;
+}
+/*# sourceMappingURL=reactive-form.component.css.map */

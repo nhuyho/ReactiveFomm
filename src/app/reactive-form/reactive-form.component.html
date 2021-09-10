@@ -1,0 +1,433 @@
+<div class="container mt-5 information-form">
+   <form action="" class="row" [formGroup]="infoForm">
+      <div class="col-sm-5 col-md-4">
+         <div class="mb-3">
+            <label for="fullName" class="label-title">Full name:</label>
+            <input
+               type="text"
+               class="form-control"
+               formControlName="name"
+               placeholder="Enter your name..."
+               [ngClass]="{
+                  'is-invalid':
+                     form.name.invalid && (form.name.dirty || form.name.touched)
+               }"
+            />
+            <div *ngIf="form.name.errors" class="invalid-feedback">
+               <span *ngIf="form.name.errors?.required">Name is required </span>
+               <span
+                  *ngIf="
+                     form.name.errors?.minlength && !form.name.errors?.pattern
+                  "
+               >
+                  Name must be at least 5 characters long.
+               </span>
+               <span *ngIf="form.name.errors?.pattern">
+                  Only characters are allowed
+               </span>
+            </div>
+         </div>
+         <div class="emailmb-3">
+            <label for="email" class="label-title">Email:</label>
+            <input
+               type="text"
+               class="form-control"
+               formControlName="email"
+               placeholder="Enter your email..."
+               [ngClass]="{
+                  'is-invalid':
+                     form.email.invalid &&
+                     (form.email.dirty || form.email.touched)
+               }"
+            />
+            <div *ngIf="form.email.errors" class="invalid-feedback">
+               <span *ngIf="form.email.errors?.required"
+                  >Email is required
+               </span>
+               <span *ngIf="form.email.errors?.pattern">Invalid email </span>
+            </div>
+         </div>
+         <div class="phone mb-3">
+            <label class="label-title">Phone:</label>
+            <input
+               class="form-control"
+               formControlName="phone"
+               placeholder="Enter your phone number..."
+               [ngClass]="{
+                  'is-invalid':
+                     form.phone.invalid &&
+                     (form.phone.dirty || form.phone.touched)
+               }"
+            />
+            <div *ngIf="form.phone.errors" class="invalid-feedback">
+               <span *ngIf="form.phone.errors?.required"
+                  >Phone is required
+               </span>
+               <span
+                  *ngIf="
+                     (form.phone.errors?.minlength ||
+                        form.phone.errors?.maxlength) &&
+                     !form.phone.errors?.pattern
+                  "
+               >
+                  Only 10 to 11 number
+               </span>
+               <span *ngIf="form.phone.errors?.pattern">
+                  Only numbers are allowed
+               </span>
+            </div>
+         </div>
+         <div class="gender">
+            <label class="label-title">Gender:</label>
+            <fieldset>
+               <div class="form-check form-check-inline">
+                  <input
+                     class="form-check-input"
+                     type="radio"
+                     formControlName="gender"
+                     value="Unknown"
+                  />
+                  <label class="form-check-label">Unknown</label>
+               </div>
+               <div class="form-check form-check-inline">
+                  <input
+                     class="form-check-input"
+                     type="radio"
+                     formControlName="gender"
+                     value="Male"
+                  />
+                  <label class="form-check-label">Male</label>
+               </div>
+               <div class="form-check form-check-inline">
+                  <input
+                     class="form-check-input"
+                     type="radio"
+                     formControlName="gender"
+                     value="Female"
+                  />
+                  <label class="form-check-label">Female</label>
+               </div>
+            </fieldset>
+         </div>
+         <div class="skill" formGroupName="skills">
+            <label class="label-title">Skill:</label>
+            <fieldset class="row">
+               <div class="col-12 d-flex">
+                  <div class="form-check form-check-inline">
+                     <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="HTML"
+                        formControlName="html"
+                     />
+                     <label class="form-check-label">HTML</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                     <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="CSS"
+                        formControlName="css"
+                     />
+                     <label class="form-check-label">CSS</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                     <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="Javascript"
+                        formControlName="javascript"
+                     />
+                     <label class="form-check-label">Javascript</label>
+                  </div>
+               </div>
+               <div class="col-12 d-flex">
+                  <div class="form-check form-check-inline">
+                     <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="Jquery"
+                        formControlName="jquery"
+                     />
+                     <label class="form-check-label">Jquery</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                     <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="Angular"
+                        formControlName="angular"
+                     />
+                     <label class="form-check-label">Angular</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                     <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="React"
+                        formControlName="react"
+                     />
+                     <label class="form-check-label">React</label>
+                  </div>
+               </div>
+            </fieldset>
+         </div>
+      </div>
+      <div class="col-sm-7 col-md-8 info-right">
+         <label class="label-title">Birthday:</label>
+         <fieldset class="row" formGroupName="birthday">
+            <div class="col-sm-2 col-md-3 mb-3">
+               <select
+                  formControlName="day"
+                  class="form-select"
+                  [class.invalid-date]="infoForm.errors?.invalidDate"
+               >
+                  <option
+                     [value]="day"
+                     *ngFor="let day of days"
+                     [selected]="i === 0"
+                  >
+                     {{ day }}
+                  </option>
+               </select>
+               <div class="text-danger" *ngIf="infoForm.errors?.invalidDate">
+                  Invalid Date
+               </div>
+            </div>
+            <div class="col-sm-2 col-md-3">
+               <select
+                  formControlName="month"
+                  class="form-select"
+                  [class.invalid-date]="infoForm.errors?.invalidDate"
+               >
+                  <option
+                     [value]="month"
+                     *ngFor="let month of months"
+                     [selected]="i === 0"
+                  >
+                     {{ month }}
+                  </option>
+               </select>
+               <div class="text-danger" *ngIf="infoForm.errors?.invalidDate">
+                  Invalid Date
+               </div>
+            </div>
+            <div class="col-sm-3 col-md-4">
+               <select
+                  formControlName="year"
+                  class="form-select"
+                  [class.invalid-date]="infoForm.errors?.invalidDate"
+               >
+                  <option
+                     [value]="year"
+                     *ngFor="let year of years"
+                     [selected]="i === 0"
+                  >
+                     {{ year }}
+                  </option>
+               </select>
+               <div class="text-danger" *ngIf="infoForm.errors?.invalidDate">
+                  Invalid Date
+               </div>
+            </div>
+         </fieldset>
+
+         <label class="label-title">Education:</label>
+         <fieldset formArrayName="education" class="education">
+            <div
+               class="row mb-3"
+               *ngFor="let item of educationForm; let i = index"
+               [formGroupName]="i"
+            >
+               <div class="col-sm-6">
+                  <input
+                     class="form-control"
+                     placeholder="School name"
+                     formControlName="schoolName"
+                     [ngClass]="{
+                        'is-invalid':
+                           handleEducation(i).get('schoolName').invalid &&
+                           (handleEducation(i).get('schoolName').dirty ||
+                              handleEducation(i).get('schoolName').touched)
+                     }"
+                  />
+
+                  <div
+                     *ngIf="handleEducation(i).get('schoolName').errors"
+                     class="invalid-feedback"
+                  >
+                     <span
+                        *ngIf="
+                           handleEducation(i).get('schoolName').errors
+                              .minlength ||
+                           handleEducation(i).get('schoolName').errors.maxlength
+                        "
+                     >
+                        Only 10 to 50 characters long.
+                     </span>
+                  </div>
+               </div>
+               <div class="col-sm-5">
+                  <div class="row">
+                     <div class="col-5">
+                        <input
+                           class="form-control"
+                           placeholder="From"
+                           formControlName="startYear"
+                           [ngClass]="{
+                              'is-invalid':
+                                 handleEducation(i).get('startYear').invalid &&
+                                 (handleEducation(i).get('startYear').dirty ||
+                                    handleEducation(i).get('startYear').touched)
+                           }"
+                        />
+                        <div *ngIf="handleEducation(i).get('startYear').errors">
+                           <span
+                              class="text-danger"
+                              [style.font-size.px]="15"
+                              *ngIf="
+                                 handleEducation(i).get('startYear').errors
+                                    ?.pattern
+                              "
+                           >
+                              Only numbers are allowed
+                           </span>
+                           <span
+                              class="text-danger"
+                              [style.font-size.px]="15"
+                              *ngIf="
+                                 handleEducation(i).get('endYear').errors
+                                    ?.mustMatch
+                              "
+                           >
+                              Invalid date range
+                           </span>
+                        </div>
+                     </div>
+
+                     <span class="col-1">-</span>
+                     <div class="col-5">
+                        <input
+                           class="form-control col-5"
+                           placeholder="To"
+                           formControlName="endYear"
+                           [style.font-size.px]="15"
+                           [ngClass]="{
+                              'is-invalid':
+                                 handleEducation(i).get('endYear').invalid &&
+                                 (handleEducation(i).get('endYear').dirty ||
+                                    handleEducation(i).get('endYear').touched)
+                           }"
+                        />
+
+                        <div *ngIf="handleEducation(i).get('endYear').errors">
+                           <span
+                              class="text-danger"
+                              [style.font-size.px]="15"
+                              *ngIf="
+                                 handleEducation(i).get('endYear').errors
+                                    ?.pattern
+                              "
+                           >
+                              Only numbers are allowed
+                           </span>
+                           <span
+                              class="text-danger"
+                              [style.font-size.px]="15"
+                              *ngIf="
+                                 handleEducation(i).get('endYear').errors
+                                    ?.mustMatch
+                              "
+                           >
+                              Invalid date range
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-1">
+                  <button
+                     *ngIf="i === 0"
+                     class="btn btn-add"
+                     (click)="addEducationRow()"
+                  >
+                     <i class="fa fa-plus"></i>
+                  </button>
+                  <button
+                     *ngIf="i !== 0"
+                     class="btn btn-sub"
+                     (click)="deletedEducationRow()"
+                  >
+                     <i class="fa fa-minus"></i>
+                  </button>
+               </div>
+            </div>
+         </fieldset>
+
+         <div class="results">
+            <div
+               class="information"
+               [style.display]="isHidden ? 'none' : 'block'"
+            >
+               <label class="title">INFORMATION</label>
+               <div class="row">
+                  <div class="col-6">
+                     <p>
+                        Full name:
+                        <span> {{ information?.name }}</span>
+                     </p>
+                     <p>
+                        Birthday:
+                        <span>{{
+                           information?.birthday.day +
+                              '-' +
+                              information?.birthday.month +
+                              '-' +
+                              information?.birthday.year
+                        }}</span>
+                     </p>
+                     <p>
+                        Email:
+                        <span>
+                           <a href="{{ information?.email }}"
+                              >{{ information?.email }}
+                           </a></span
+                        >
+                     </p>
+                     <p>
+                        Phone:
+                        <span> {{ information?.phone }}</span>
+                     </p>
+                     <p>
+                        Gender:
+                        <span> {{ information?.gender }}</span>
+                     </p>
+                  </div>
+                  <div class="col-6">
+                     <p>Skills:</p>
+                     <p>
+                        Education:
+                        <ng-container
+                           *ngFor="let item of information?.education"
+                        >
+                           <span
+                              >{{ item.schoolName }} : {{ item.startYear }} -
+                              {{ item.endYear }}</span
+                           ></ng-container
+                        >
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <button
+               class="btn btn-submit"
+               type="submit"
+               [disabled]="!infoForm.valid"
+               (click)="onSubmit()"
+            >
+               Submit
+            </button>
+         </div>
+      </div>
+   </form>
+</div>

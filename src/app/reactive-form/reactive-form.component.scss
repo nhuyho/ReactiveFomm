@@ -1,0 +1,65 @@
+.information-form {
+   border: 1px solid #aebfbe;
+   padding: 25px;
+   border-radius: 10px;
+   height: auto;
+   form {
+      .label-title {
+         font-size: 20px;
+         color: #000063;
+         font-weight: 500;
+         margin: 10px 0;
+      }
+      .education {
+         .btn-add {
+            border: 2px solid #9ccc65;
+            color: #6b9b37;
+         }
+         .btn-sub {
+            border: 2px solid #c62828;
+            color: #8e0000;
+         }
+      }
+      .results {
+         display: flex;
+         justify-content: flex-end;
+         margin-top: 3rem;
+         .btn-submit {
+            width: 7rem;
+            height: 40px;
+            background: #d32f2f;
+            color: #fff;
+            line-height: 20px;
+         }
+         .information {
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            border: 1px solid #bdbdbd;
+            position: relative;
+            margin-right: auto;
+            .title {
+               position: absolute;
+               top: -20px;
+               left: 30px;
+               color: #000063;
+               padding: 0 0.5rem;
+               font-size: 1.5rem;
+               font-weight: bold;
+               background-color: white;
+            }
+            p {
+               font-weight: 700;
+               color: #000063;
+               span {
+                  color: #000;
+                  font-weight: 400;
+                  margin-left: 0.5rem;
+                  font-size: 1rem;
+                  letter-spacing: 1px;
+               }
+            }
+         }
+      }
+   }
+}
